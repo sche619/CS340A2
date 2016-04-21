@@ -1,0 +1,25 @@
+UPI: sche619
+Name: Shunying Chen
+
+Question 1:
+
+If there are a large number of files, it will be time consuming as the sync file will grow too large, and checking the files will be very inefficient as it needs to walk through all the subdirectories. Hence the synchronisation implementation when coping with a large number of files is not well. 
+
+
+Question 2:
+
+Assumption 1: 
+If two files have the same signature, they are the same version.
+Solution1: 
+In reality the file could have been altered and then changed back to its original state. To make the synchronization process safer or more reliable, the solution can be to ask the user which bits of the version they want to keep. 
+
+Assumption 2: 
+After a system crash in the middle of a filesystem operation, filesystem metadata may be in an inconsistent state.
+Solution2:
+keep a separate log
+• write log entry describing operations about to be performed
+• perform the operation on the filesystem
+• delete the log entry
+• after a crash:
+• check the log
+• if non-empty, perform operations described in the log
